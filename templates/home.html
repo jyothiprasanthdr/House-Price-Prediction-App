@@ -4,66 +4,81 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>House Price Prediction App</title>
+    <script src="https://cdn.tailwindcss.com"></script>
   </head>
-  <body>
-    <main>
-      <div class="login">
-        <h1>US House Price Prediction</h1>
-        <form action="{{url_for('predict')}}" method="post">
-          <input
-            type="text"
-            name="AnnualInsurance"
-            placeholder="Annual Insurance"
-            required
-          /><br />
-          <input
-            type="text"
-            name="YearBuilt"
-            placeholder="Year Built"
-            required
-          /><br />
-          <input
-            type="text"
-            name="LivingArea"
-            placeholder="Living Area"
-            required
-          /><br />
-          <input
-            type="text"
-            name="Bathrooms"
-            placeholder="Bathrooms"
-            required
-          /><br />
-          <input
-            type="text"
-            name="Bedrooms"
-            placeholder="Bedrooms"
-            required
-          /><br />
-          <input
-            type="text"
-            name="State"
-            placeholder="State: Ex: For Iowa, enter IA"
-            required
-          /><br />
-
-          <label for="dropdown">HomeType:</label>
-          <select id="dropdown" name="HomeType">
-            <option value="CONDO">CONDO</option>
-            <option value="SINGLE_FAMILY">SINGLE_FAMILY</option>
-            <option value="MULTI_FAMILY">MULTI_FAMILY</option>
-            <option value="APARTMENT">APARTMENT</option>
-            <option value="LOT">LOT</option>
-            <option value="TOWNHOUSE">TOWNHOUSE</option>
-            <option value="MANUFACTURED">MANUFACTURED</option>
-            <option value="UNKNOWN">UNKNOWN</option>
-          </select>
-          <br />
-          <br />
-          <button type="submit">Predict</button>
-        </form>
-      </div>
+  <body class="bg-gray-100 flex items-center justify-center h-screen">
+    <main class="w-full max-w-md p-8 bg-white rounded-lg shadow-lg">
+      <h1 class="text-2xl font-bold text-center text-gray-800 mb-6">
+        US House Price Prediction
+      </h1>
+      <form action="{{url_for('predict')}}" method="post" class="space-y-4">
+        <input
+          type="text"
+          name="AnnualInsurance"
+          placeholder="Annual Insurance"
+          required
+          class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
+        />
+        <input
+          type="text"
+          name="YearBuilt"
+          placeholder="Year Built"
+          required
+          class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
+        />
+        <input
+          type="text"
+          name="LivingArea"
+          placeholder="Living Area"
+          required
+          class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
+        />
+        <input
+          type="text"
+          name="Bathrooms"
+          placeholder="Bathrooms"
+          required
+          class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
+        />
+        <input
+          type="text"
+          name="Bedrooms"
+          placeholder="Bedrooms"
+          required
+          class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
+        />
+        <input
+          type="text"
+          name="State"
+          placeholder="State (e.g., IA for Iowa)"
+          required
+          class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
+        />
+        <label for="dropdown" class="block text-gray-700 font-semibold">
+          Home Type:
+        </label>
+        <select
+          id="dropdown"
+          name="HomeType"
+          class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
+        >
+          <option value="CONDO">CONDO</option>
+          <option value="SINGLE_FAMILY">SINGLE FAMILY</option>
+          <option value="MULTI_FAMILY">MULTI FAMILY</option>
+          <option value="APARTMENT">APARTMENT</option>
+          <option value="LOT">LOT</option>
+          <option value="TOWNHOUSE">TOWNHOUSE</option>
+          <option value="MANUFACTURED">MANUFACTURED</option>
+          <option value="UNKNOWN">UNKNOWN</option>
+        </select>
+        <button
+          type="submit"
+          class="w-full bg-green-500 text-white font-semibold py-3 rounded-lg hover:bg-green-600 transition duration-300"
+        >
+          Predict
+        </button>
+      </form>
+      <div class="mt-6 text-center text-gray-700">{{ prediction_text }}</div>
     </main>
-    <div>{{prediction_text}}</div>
   </body>
 </html>
