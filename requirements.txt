@@ -5,4 +5,4 @@ pandas
 seaborn
 gunicorn
 flask_cors
-Cython
+cython
