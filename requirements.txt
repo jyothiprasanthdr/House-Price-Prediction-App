@@ -2,7 +2,7 @@ Flask
 flask_cors
 seaborn
 numpy
-scikit-learn==1.0.2
+scikit-learn>=1.0.2
 pandas
 gunicorn
 
