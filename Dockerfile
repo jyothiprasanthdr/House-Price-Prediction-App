@@ -14,7 +14,7 @@ RUN python -m pip install --upgrade pip \
 COPY . .
 
 # Set the default port
-ENV PORT 8000
+ENV PORT=8000
 EXPOSE $PORT
 
 # Command to run the application
