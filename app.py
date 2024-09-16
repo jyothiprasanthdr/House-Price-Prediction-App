@@ -40,7 +40,6 @@ def predict_api():
     encoded_num = scalar.transform(num_values)
     input_data = np.concatenate([encoded_num, encoded_cat], axis=1)
     output = regmodel.predict(input_data)
-
     print(output[0])
 
     return jsonify(output[0])
