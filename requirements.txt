@@ -5,4 +5,4 @@ pandas
 seaborn
 gunicorn
 flask_cors
-cython
+cython==0.29.36
