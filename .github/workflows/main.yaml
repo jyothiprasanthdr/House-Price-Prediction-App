@@ -31,7 +31,7 @@ jobs:
           context: ./
           file: ./Dockerfile
           push: true
-          tags: ${{ secrets.DOCKER_USERNAME }}/house-price-prediction-app:latest
+          tags: ${{ secrets.DOCKER_USERNAME }}house-price-prediction-app:latest
 
       # Step 5: Deploy to Render
       - name: Deploy to Render
