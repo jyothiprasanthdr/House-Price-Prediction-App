@@ -1,0 +1,26 @@
+name: House Prediction CI/CD
+
+on:
+  push: 
+    branches:[main]
+
+jobs:
+  build:  
+    runs-on: ubuntu-latest
+    steps: 
+      - name: Checkout
+        uses: actions/House-Price-Prediction-App
+        with:
+          service-id: ${{secrets.SERVICE_ID}}
+          api-key: ${{secrets.RENDER_API_KEY}}
+          dockerfile_directory: ./
+          dockerfile_name: Dockerfile
+          dockerfile_name: Dockerfile
+          process_type: web
+
+
+
+
+
+
+
