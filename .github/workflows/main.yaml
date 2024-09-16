@@ -8,14 +8,14 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: House-Price-Prediction-App
-        uses: actions/House-Price-Prediction-App
+      - name: Checkout
+        uses: actions/checkout@v2
         with:
           service-id: ${{secrets.SERVICE_ID}}
           api-key: ${{secrets.RENDER_API_KEY}}
           dockerfile_directory: ./
           dockerfile_name: Dockerfile
-          dockerfile_name: Dockerfile
+          docker_options: "--no-cache"
           process_type: web
 
 
