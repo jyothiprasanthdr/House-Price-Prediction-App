@@ -1,10 +1,12 @@
 FROM python:3.7
 
+COPY . /app
+
 # Set the working directory
 WORKDIR /app
 
-# Copy the requirements file first to leverage Docker cache
-COPY requirements.txt .
+# # Copy the requirements file first to leverage Docker cache
+# COPY requirements.txt .
 
 
 
@@ -12,8 +14,7 @@ COPY requirements.txt .
 # Upgrade pip and install dependencies
 RUN pip install  -r requirements.txt
 
-# Copy the rest of the application code
-COPY . .
+
 
 # Set the default port
 ENV PORT=8000
