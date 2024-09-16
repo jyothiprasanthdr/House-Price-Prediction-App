@@ -1,6 +1,6 @@
 Flask
 sklearn
-numpy 
+numpy
 pandas
 seaborn
 gunicorn
