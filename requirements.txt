@@ -2,7 +2,8 @@ Flask
 flask_cors
 seaborn
 numpy
-scikit-learn
-pandas
+scikit-learn==1.3.2
+pandas==1.3.5
 gunicorn
+joblib==1.1.1
 
