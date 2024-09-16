@@ -42,6 +42,7 @@ def predict_api():
     output = regmodel.predict(input_data)
 
     print(output[0])
+
     return jsonify(output[0])
 
 
