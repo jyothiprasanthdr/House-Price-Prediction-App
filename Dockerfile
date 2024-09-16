@@ -6,12 +6,11 @@ WORKDIR /app
 # Copy the requirements file first to leverage Docker cache
 COPY requirements.txt .
 
-RUN rm -rf build/ dist/ *.egg-info
+
 
 
 # Upgrade pip and install dependencies
-RUN python -m pip install --upgrade pip \
-    && pip install --no-cache-dir -r requirements.txt
+RUN pip install  -r requirements.txt
 
 # Copy the rest of the application code
 COPY . .
