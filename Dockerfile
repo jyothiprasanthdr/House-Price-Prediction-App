@@ -17,8 +17,8 @@ RUN pip install  -r requirements.txt
 
 
 # Set the default port
-ENV PORT=8000
+
 EXPOSE $PORT
 
 # Command to run the application
-CMD gunicorn --workers=4 --bind 127.0.0.1:$PORT app:app
+CMD gunicorn --workers=4 --bind 0.0.0.0:$PORT app:app
