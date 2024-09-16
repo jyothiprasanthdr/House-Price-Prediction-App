@@ -5,8 +5,6 @@ COPY . /app
 # Set the working directory
 WORKDIR /app
 
-
-
 # Upgrade pip and install dependencies
 RUN pip install  -r requirements.txt
 
