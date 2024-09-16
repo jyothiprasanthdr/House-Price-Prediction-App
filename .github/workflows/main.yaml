@@ -8,7 +8,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
+      - name: House-Price-Prediction-App
         uses: actions/House-Price-Prediction-App
         with:
           service-id: ${{secrets.SERVICE_ID}}
