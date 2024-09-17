@@ -10,7 +10,8 @@ RUN pip install --no-cache-dir  -r requirements.txt
 
 # Set the default port
 
-EXPOSE 8000
+EXPOSE 7596
 
 # Command to run the application
-CMD gunicorn --workers=2 --timeout 300 --bind 127.0.0.1:8000 app:app
+CMD gunicorn --timeout 600 --workers 4 --bind 0.0.0.0:7596 app:app
+
