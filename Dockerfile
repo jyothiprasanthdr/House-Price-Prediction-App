@@ -5,7 +5,7 @@ COPY . /app
 WORKDIR /app
 
 # Upgrade pip and install dependencies
-RUN pip install  -r requirements.txt
+RUN pip install --no-cache-dir  -r requirements.txt
 
 
 # Set the default port
@@ -13,4 +13,4 @@ RUN pip install  -r requirements.txt
 EXPOSE 10000
 
 # Command to run the application
-CMD gunicorn --workers=4  --timeout 120 --bind 0.0.0.0:10000 app:app
+CMD gunicorn --workers=4 --timeout 120 --bind 0.0.0.0:10000 app:app
