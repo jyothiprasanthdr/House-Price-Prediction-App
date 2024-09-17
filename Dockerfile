@@ -10,7 +10,7 @@ RUN pip install  -r requirements.txt
 
 # Set the default port
 
-EXPOSE 5000
+EXPOSE 10000
 
 # Command to run the application
-CMD gunicorn --workers=4 --bind 0.0.0.0:5000 app:app
+CMD gunicorn --workers=4  --timeout 120 --bind 0.0.0.0:10000 app:app
