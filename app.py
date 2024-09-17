@@ -22,26 +22,29 @@ def home():
 
 @app.route("/predict_api", methods=["POST"])
 def predict_api():
-    json_data = request.get_json()
-    data = json_data["data"]
+    try:
+        json_data = request.get_json()
+        data = json_data["data"]
 
-    cat_values = [[data["State"], data["HomeType"]]]
-    encoded_cat = encoder.transform(cat_values)
+        cat_values = [[data["State"], data["HomeType"]]]
+        encoded_cat = encoder.transform(cat_values)
 
-    num_values = [
-        [
-            data["YearBuilt"],
-            data["LivingArea"],
-            data["Bathrooms"],
-            data["Bedrooms"],
+        num_values = [
+            [
+                data["YearBuilt"],
+                data["LivingArea"],
+                data["Bathrooms"],
+                data["Bedrooms"],
+            ]
         ]
-    ]
-    encoded_num = scalar.transform(num_values)
-    input_data = np.concatenate([encoded_num, encoded_cat], axis=1)
-    output = regmodel.predict(input_data)
-    print(output[0])
-
-    return jsonify(output[0])
+        encoded_num = scalar.transform(num_values)
+        input_data = np.concatenate([encoded_num, encoded_cat], axis=1)
+        output = regmodel.predict(input_data)
+        return jsonify({"prediction": output[0]})
+    except KeyError as e:
+        return jsonify({"error": f"Missing key: {str(e)}"}), 400
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
 
 
 @app.route("/predict", methods=["POST"])
