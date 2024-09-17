@@ -1,18 +1,36 @@
 import joblib
-from flask import Flask, request, app, jsonify, url_for, render_template
+from flask import Flask, request, jsonify, render_template
 import numpy as np
-import pandas as pd
 from flask_cors import CORS
 
-
 app = Flask(__name__)
-
 CORS(app)
 
+# Lazy loading for the model, scaler, and encoder
+regmodel = None
+scalar = None
+encoder = None
 
-regmodel = joblib.load("model.joblib")
-scalar = joblib.load("scaler.joblib")
-encoder = joblib.load("encoder.joblib")
+
+def load_model():
+    global regmodel
+    if regmodel is None:
+        regmodel = joblib.load("model.joblib")
+    return regmodel
+
+
+def load_scaler():
+    global scalar
+    if scalar is None:
+        scalar = joblib.load("scaler.joblib")
+    return scalar
+
+
+def load_encoder():
+    global encoder
+    if encoder is None:
+        encoder = joblib.load("encoder.joblib")
+    return encoder
 
 
 @app.route("/")
@@ -25,6 +43,11 @@ def predict_api():
     try:
         json_data = request.get_json()
         data = json_data["data"]
+
+        # Lazy load the encoder, scaler, and model
+        encoder = load_encoder()
+        scalar = load_scaler()
+        regmodel = load_model()
 
         cat_values = [[data["State"], data["HomeType"]]]
         encoded_cat = encoder.transform(cat_values)
@@ -49,6 +72,11 @@ def predict_api():
 
 @app.route("/predict", methods=["POST"])
 def predict():
+    # Lazy load the encoder, scaler, and model
+    encoder = load_encoder()
+    scalar = load_scaler()
+    regmodel = load_model()
+
     # Get the form values from the POST request
     data = list(request.form.values())
     print(data)
