@@ -1,4 +1,4 @@
-import pickle
+import joblib
 from flask import Flask, request, app, jsonify, url_for, render_template
 import numpy as np
 import pandas as pd
@@ -10,9 +10,9 @@ app = Flask(__name__)
 CORS(app)
 
 
-regmodel = pickle.load(open("model.pickle", "rb"))
-scalar = pickle.load(open("scaler.pickle", "rb"))
-encoder = pickle.load(open("encoder.pickle", "rb"))
+regmodel = joblib.load("model.joblib")
+scalar = joblib.load("scaler.joblib")
+encoder = joblib.load("encoder.joblib")
 
 
 @app.route("/")
