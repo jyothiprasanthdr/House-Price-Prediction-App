@@ -1,4 +1,4 @@
-import joblib
+import pickle
 from flask import Flask, request, app, jsonify, url_for, render_template
 import numpy as np
 import pandas as pd
@@ -10,9 +10,9 @@ app = Flask(__name__)
 CORS(app)
 
 
-regmodel = joblib.load("model.joblib")
-scalar = joblib.load("scaler.joblib")
-encoder = joblib.load("encoder.joblib")
+regmodel = pickle.load(open("model.pickle", "rb"))
+scalar = pickle.load(open("scaler.pickle", "rb"))
+encoder = pickle.load(open("encoder.pickle", "rb"))
 
 
 @app.route("/")
@@ -30,7 +30,6 @@ def predict_api():
 
     num_values = [
         [
-            data["AnnualInsurance"],
             data["YearBuilt"],
             data["LivingArea"],
             data["Bathrooms"],
@@ -52,8 +51,8 @@ def predict():
     print(data)
 
     # Separate numerical and categorical data
-    num_data = data[0:5]  # First 5 are numerical data
-    cat_data = [data[5], data[6]]  # Last 2 are categorical (e.g., State, HomeType)
+    num_data = data[0:4]  # First 5 are numerical data
+    cat_data = [data[4], data[5]]  # Last 2 are categorical (e.g., State, HomeType)
 
     # Convert numerical data to float and reshape it to a 2D array
     try:
