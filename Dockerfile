@@ -10,7 +10,7 @@ RUN pip install --no-cache-dir  -r requirements.txt
 
 # Set the default port
 
-EXPOSE 10000
+EXPOSE 8000
 
 # Command to run the application
-CMD gunicorn --workers=2 --timeout 300 --bind 0.0.0.0:10000 app:app
+CMD gunicorn --workers=2 --timeout 300 --bind 0.0.0.0:8000 app:app
